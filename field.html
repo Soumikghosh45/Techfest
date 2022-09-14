@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Squad Builder/Kick It!</title>
+    <title>Fantasy League Solver</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
@@ -30,7 +30,7 @@
             <select id="team-formation" class="ui dropdown formation-select" name="team-formation"
                 placeholder="Team Formation">
                 <option value="all" selected>Select the best overall team (including subs)</option>
-                <option value="343"> 3 4 3</option>
+                <option value="343"> 1 4 3</option>
                 <option value="352">3 5 2</option>
                 <option value="442">4 4 2</option>
                 <option value="451">4 5 1</option>
@@ -40,7 +40,7 @@
         </div>
 
         <div class="options ui fluid positive">
-            <h3>Players you always want</h3>
+            <h3>Players whose stat are best for playing in the Team</h3>
             <div class="opt-players">
                 <p>I would like to have these players in my team:</p>
             </div>
@@ -52,7 +52,7 @@
         </div>
 
         <div class="options ui fluid negative">
-            <h3>Players you never want</h3>
+            <h3>Players whose stats are less than other players</h3>
             <div class="opt-players">
                 <p>I don't want these players in my team:</p>
             </div>
@@ -67,9 +67,11 @@
         <div class="result">
             <div class="pitch"></div>
             <div class="player-price-summary">
-                <p>Players in <span class="grey-player-area">Green</span> are cheap players (less than or equal to &#163;4.5m). At least one goalkeeper is always cheap, and depending on your preferred formation, others can be too.</p>
+                <p>Players in <span class="grey-player-area">Grey</span> are cheap players (less than or equal to &#163;4.5m). At least one goalkeeper is always cheap, and depending on your preferred formation, others can be too.</p>
             </div>
-            
+            <div class="points-summary">
+                <p>This team generated <span id="total_points"></span> points last season.</p>
+            </div>
         </div>
 
         <footer>
@@ -155,7 +157,7 @@
             var player_lookup = {};
 
             players.forEach(function(p) {
-                player_lookup[p.name + '_' + p.team + '_' + p.position] = p;
+                player_lookup[p.name + '' + p.team + '' + p.position] = p;
             });
 
             return player_lookup;
